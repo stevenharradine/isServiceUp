@@ -31,7 +31,7 @@ request(url, function (error, response, body) {
       }),
       mailOptions = {               // setup e-mail data with unicode symbols
         from: "Skype Watch ✔ <Skype-Watch@alert.com>", // sender address
-        to: emailAddress,             // list of receivers
+        to: CONFIG.ToEmail,             // list of receivers
         subject: "Skype is back up",   // Subject line
         text: "Skype is back up",               // plaintext body
         html: "Skype is back up"                // html body
