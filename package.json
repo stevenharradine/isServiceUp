@@ -1,0 +1,11 @@
+{
+  "name": "isSkypeUp",
+  "description": "A simple script to read skypes heartbeat and notify you when the service is up",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "nodemailer": "*",
+    "request": "*",
+    "cheerio": "*"
+  }
+}
