@@ -1,2 +1,2 @@
-# isSkypeUp
-A simple script to read skypes heartbeat and notify you when the service is up
+# isServiceUp
+A simple script to read if a service is up or down and notify you when the service is up
