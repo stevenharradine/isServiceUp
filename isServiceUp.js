@@ -38,9 +38,11 @@ function readStatus (statusFile, isError, callback) {
 }
 
 function alert (isError) {
-  sendEmails (parser.name + " is " + (isError ? "down" : "up"), function () {
-    console.log ("done")
-  })
+  if (CONFIG.ALERT_METHOD == "email") {
+    sendEmails (parser.name + " is " + (isError ? "down" : "up"), function () {
+      console.log ("done")
+    })
+  }
 }
 
 function writeStatus (statusFile, isError, callback) {
@@ -65,7 +67,7 @@ function sendEmails (subject, callback) {
     }
   })
 
-  CONFIG.EMAIL_LIST.forEach (function (emailAddress, index, array) {
+  CONFIG.ALERT_LIST.forEach (function (emailAddress, index, array) {
     var mailOptions = {               // setup e-mail data with unicode symbols
       from: "Service Watch ✔ <Service-Watch@alert.com>", // sender address
       to: emailAddress,               // list of receivers
@@ -82,7 +84,7 @@ function sendEmails (subject, callback) {
         console.log("Message sent: " + info.response)
       }
 
-      if (++sentMailCounter == CONFIG.EMAIL_LIST.length) {
+      if (++sentMailCounter == CONFIG.ALERT_LIST.length) {
         callback ()
       }
     })
