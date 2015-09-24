@@ -17,7 +17,9 @@ request(parser.url, function (error, response, body) {
     readStatus (statusFile, isError, function (currentStatus) {
       console.log (currentStatus)
       if (JSON.parse (currentStatus) != isError) {
-        writeStatusSendEmails (statusFile, isError)
+        writeStatus (statusFile, isError, function () {
+          alert (isError)
+        })
       }
     })
   }
@@ -26,18 +28,18 @@ request(parser.url, function (error, response, body) {
 function readStatus (statusFile, isError, callback) {
   fs.readFile(statusFile, 'utf-8', function (err, currentStatus) {
     if(err) {
-      writeStatusSendEmails (statusFile, isError)
+      writeStatus (statusFile, isError, function () {
+        alert (isError)
+      })
     } else {
       callback (currentStatus)
     }
   })
 }
 
-function writeStatusSendEmails (statusFile, isError) {
-  writeStatus (statusFile, isError, function () {
-    sendEmails (parser.name + " is " + (isError ? "down" : "up"), function () {
-      console.log ("done")
-    })
+function alert (isError) {
+  sendEmails (parser.name + " is " + (isError ? "down" : "up"), function () {
+    console.log ("done")
   })
 }
 
