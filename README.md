@@ -12,10 +12,12 @@ cd isServiceUp
 npm install
 ```
 
-## set up your config file to send emails and who to notify
+## set up your config file to send emails and or slack
 ```
 module.exports.EMAIL_USER     = 'youremail';
 module.exports.EMAIL_PASSWORD = 'yourpassword';
+
+module.exports.EMAIL_PASSWORD = 'TOKEN/TOKEN/TOKEN';
 ```
 
 ## run the program selecting which service to check
