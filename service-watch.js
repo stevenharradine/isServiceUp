@@ -36,7 +36,7 @@ function readStatus (statusFile, isError, callback) {
 }
 
 function alert (isError) {
-  require ('./alerts/' + CONFIG.ALERT_METHOD + ".js").alert(isError, function () {
+  require ('./alerts/' + CONFIG.ALERT_METHOD + ".js").alert(parser.name + " is " + (isError ? "down" : "up"), isError, function () {
     console.log ("done")
   })
 }

@@ -2,9 +2,8 @@ var CONFIG       = require("./../config"),
     Slack        = require("node-slack"),
     slack        = new Slack("https://hooks.slack.com/services/" + CONFIG.SLACK_TOKEN)
 
-module.exports.alert = function (isError, callback) {
-  var sentCounter = 0,
-      subject     = parser.name + " is " + (isError ? "down" : "up")
+module.exports.alert = function (subject, isError, callback) {
+  var sentCounter = 0
 
   CONFIG.ALERT_LIST.forEach (function (slackChannel, index, array) {
     slack.send({

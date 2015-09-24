@@ -1,9 +1,8 @@
 var CONFIG       = require("./../config"),
     nodemailer   = require("nodemailer")
 
-module.exports.alert = function (isError, callback) {
+module.exports.alert = function (subject, isError, callback) {
   var sentMailCounter = 0,
-      subject         = parser.name + " is " + (isError ? "down" : "up"),
       transporter     = nodemailer.createTransport({
     service: CONFIG.EMAIL_PROVIDER,
     auth: {
