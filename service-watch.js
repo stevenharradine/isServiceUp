@@ -14,7 +14,6 @@ request(parser.url, function (error, response, body) {
         statusFile = "./" + parser.name + ".status"
 
     readStatus (statusFile, isError, function (currentStatus) {
-      console.log (currentStatus)
       if (JSON.parse (currentStatus) != isError) {
         writeStatus (statusFile, isError, function () {
           alert (isError)
