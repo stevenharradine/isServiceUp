@@ -20,9 +20,10 @@ module.exports.EMAIL_PASSWORD = 'yourpassword';
 
 ## run the program selecting which service to check
 ```
-node isServiceUp {{ parser_name }} [{{ email_addresses }}]
+node isServiceUp {{ parser_name }} {{ alert_type }} [{{ alert_list }}]
 ```
 Example
 ```
-node isServiceUp github first@email.com second@email.com third@email.com
+node isServiceUp github email first@email.com second@email.com third@email.com
+node isServiceUp github slack "#channel1" @person1 "#channel2" @person2
 ```
