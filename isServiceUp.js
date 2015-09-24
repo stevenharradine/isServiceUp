@@ -1,7 +1,8 @@
 var CONFIG       = require("./config"),
+    fs           = require('fs')
     request      = require('request'),
     Cheerio      = require('cheerio'),
-    nodemailer   = require("nodemailer")
+    nodemailer   = require("nodemailer"),
     parser       = require ("./parsers/" + process.argv[2] + ".js")
 
 request(parser.url, function (error, response, body) {
@@ -10,13 +11,47 @@ request(parser.url, function (error, response, body) {
   }
 
   if (!error && response.statusCode == 200) {
-    var isError = parser.parse (Cheerio.load(body))
+    var isError    = parser.parse (Cheerio.load(body)),
+        statusFile = "./" + parser.name + ".status"
 
-    sendEmails (parser.name + " is " + (isError ? "down" : "up"), function () {
-      console.log ("done")
+    readStatus (statusFile, isError, function (currentStatus) {
+      console.log (currentStatus)
+      if (JSON.parse (currentStatus) != isError) {
+        writeStatusSendEmails (statusFile, isError)
+      }
     })
   }
 })
+
+function readStatus (statusFile, isError, callback) {
+  fs.readFile(statusFile, 'utf-8', function (err, currentStatus) {
+    if(err) {
+      writeStatusSendEmails (statusFile, isError)
+    } else {
+      callback (currentStatus)
+    }
+  })
+}
+
+function writeStatusSendEmails (statusFile, isError) {
+  writeStatus (statusFile, isError, function () {
+    sendEmails (parser.name + " is " + (isError ? "down" : "up"), function () {
+      console.log ("done")
+    })
+  })
+}
+
+function writeStatus (statusFile, isError, callback) {
+  fs.writeFile(statusFile, isError, function(err) {
+    if(err) {
+      return console.log(err)
+    }
+
+    console.log ("Status file updated")
+
+    callback ()
+  })
+}
 
 function sendEmails (subject, callback) {
   var sentMailCounter = 0,
@@ -31,10 +66,10 @@ function sendEmails (subject, callback) {
   CONFIG.EMAIL_LIST.forEach (function (emailAddress, index, array) {
     var mailOptions = {               // setup e-mail data with unicode symbols
       from: "Service Watch ✔ <Service-Watch@alert.com>", // sender address
-      to: emailAddress,             // list of receivers
-      subject: subject,   // Subject line
-      text: subject,               // plaintext body
-      html: subject                // html body
+      to: emailAddress,               // list of receivers
+      subject: subject,               // Subject line
+      text: subject,                  // plaintext body
+      html: subject                   // html body
     };
 
     // send mail with defined transport object
