@@ -20,12 +20,13 @@ request(parser.url, function (error, response, body) {
           pass: CONFIG.EMAIL_PASSWORD
         }
       }),
+      mail_subject = parser.name + " is back up",
       mailOptions = {               // setup e-mail data with unicode symbols
         from: "Service Watch ✔ <Service-Watch@alert.com>", // sender address
         to: CONFIG.ToEmail,             // list of receivers
-        subject: parser.name + " is back up",   // Subject line
-        text: parser.name + " is back up",               // plaintext body
-        html: parser.name + " is back up"                // html body
+        subject: mail_subject,   // Subject line
+        text: mail_subject,               // plaintext body
+        html: mail_subject                // html body
       };
 
       // send mail with defined transport object
