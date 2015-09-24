@@ -10,13 +10,11 @@ request(parser.url, function (error, response, body) {
   }
 
   if (!error && response.statusCode == 200) {
-    if (parser.parse (Cheerio.load(body))) {
-      console.log ("Error")
-    } else {
-      sendEmails (parser.name + " is back up", function () {
-        console.log ("done")
-      })
-    }
+    var isError = parser.parse (Cheerio.load(body))
+
+    sendEmails (parser.name + " is " + (isError ? "down" : "up"), function () {
+      console.log ("done")
+    })
   }
 })
 
