@@ -1,6 +1,6 @@
 {
-  "name": "isSkypeUp",
-  "description": "A simple script to read skypes heartbeat and notify you when the service is up",
+  "name": "service-watch",
+  "description": "A simple script to read a services status and notify you when the status changes",
   "version": "0.0.1",
   "private": true,
   "dependencies": {
