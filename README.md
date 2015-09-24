@@ -12,19 +12,17 @@ cd isServiceUp
 npm install
 ```
 
-## set up your config file to send emails and who to notify (TODO: make external list like gmail-invoker)
+## set up your config file to send emails and who to notify
 ```
 module.exports.EMAIL_USER     = 'youremail';
 module.exports.EMAIL_PASSWORD = 'yourpassword';
-
-module.exports.ToEmail        = 'youremail';
 ```
 
 ## run the program selecting which service to check
 ```
-node isServiceUp {{ parser_name }}
+node isServiceUp {{ parser_name }} [{{ email_addresses }}]
 ```
 Example
 ```
-node isServiceUp github
+node isServiceUp github first@email.com second@email.com third@email.com
 ```
