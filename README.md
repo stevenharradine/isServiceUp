@@ -29,7 +29,7 @@ cd ..
 
 ## run the program selecting which service to check
 ```
-node service-watch {{ parser_name }} {{ alert_type }} [{{ alert_list }}]
+node service-watch {{ alert_type }} [{{ alert_list }}]
 ```
 Example
 ```
