@@ -20,7 +20,7 @@ module.exports.EMAIL_PASSWORD = 'yourpassword';
 module.exports.EMAIL_PASSWORD = 'TOKEN/TOKEN/TOKEN';
 ```
 
-## copy or symlink parsers parsers-enabled
+## copy or symlink parsers to parsers-enabled
 ```
 cd parsers-enabled
 ln -s ../parsers-available/github.js ./
@@ -31,7 +31,7 @@ cd ..
 ```
 node service-watch {{ alert_type }} [{{ alert_list }}]
 ```
-Example
+### example
 ```
 node service-watch email first@email.com second@email.com third@email.com
 node service-watch slack "#channel1" @person1 "#channel2" @person2
