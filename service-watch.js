@@ -1,7 +1,8 @@
 var CONFIG       = require("./config"),
     fs           = require('fs'),
     request      = require('request'),
-    Cheerio      = require('cheerio')
+    Cheerio      = require('cheerio'),
+    getFilesSync = require('./libs/getFilesSync').getFilesSync
 
 getFilesSync('parsers-enabled').forEach (function (parser_name, index, array) {
   var parser = require ("./" + parser_name)
@@ -25,27 +26,6 @@ getFilesSync('parsers-enabled').forEach (function (parser_name, index, array) {
     }
   })
 })
-
-function getFilesSync (dir, files_, filter){
-    files_ = files_ || []
-    var files = fs.readdirSync(dir)
-
-    for (var i in files){
-        var name = dir + '/' + files[i]
-
-        if (fs.statSync(name).isDirectory()){
-          getFilesSync(name, files_, filter)
-        } else {
-          if (filter && filter.length > 0 && name.indexOf (filter) >= 0) {
-            files_.push(name)
-          } else if (!filter || filter && ! (filter.length > 0)) {
-            files_.push(name)
-          }
-        }
-    }
-
-    return files_
-}
 
 function readStatus (statusFile, parser, isError, callback) {
   fs.readFile(statusFile, 'utf-8', function (err, currentStatus) {

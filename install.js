@@ -1,6 +1,7 @@
-var fs   = require('fs'),
-    sys  = require('sys'),
-    exec = require('child_process').exec
+var fs           = require('fs'),
+    sys          = require('sys'),
+    exec         = require('child_process').exec,
+    getFilesSync = require('./libs/getFilesSync').getFilesSync
 
 exec ("npm install", function (error, stdout, stderr) {
   if (error) {
@@ -25,24 +26,3 @@ exec ("npm install", function (error, stdout, stderr) {
       })
   })
 })
-
-function getFilesSync (dir, files_, filter){
-    files_ = files_ || []
-    var files = fs.readdirSync(dir)
-
-    for (var i in files){
-        var name = dir + '/' + files[i]
-
-        if (fs.statSync(name).isDirectory()){
-          getFilesSync(name, files_, filter)
-        } else {
-          if (filter && filter.length > 0 && name.indexOf (filter) >= 0) {
-            files_.push(name)
-          } else if (!filter || filter && ! (filter.length > 0)) {
-            files_.push(name)
-          }
-        }
-    }
-
-    return files_
-}
