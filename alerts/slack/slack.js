@@ -1,6 +1,7 @@
-var CONFIG       = require("./../config"),
+var CONFIG       = require("./../../config"),
+    SLACK_CONFIG = require("./config"),
     Slack        = require("node-slack"),
-    slack        = new Slack("https://hooks.slack.com/services/" + CONFIG.SLACK_TOKEN)
+    slack        = new Slack("https://hooks.slack.com/services/" + SLACK_CONFIG.SLACK_TOKEN)
 
 module.exports.alert = function (subject, isError, callback) {
   var sentCounter = 0

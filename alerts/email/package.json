@@ -1,0 +1,9 @@
+{
+  "name": "service-watch-email",
+  "description": "installs email dependancies",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "nodemailer": "*"
+  }
+}

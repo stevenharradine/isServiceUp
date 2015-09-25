@@ -1,0 +1,9 @@
+{
+  "name": "service-watch-slack",
+  "description": "installs slack dependancies",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "node-slack": "*"
+  }
+}

@@ -26,18 +26,25 @@ getFilesSync('parsers-enabled').forEach (function (parser_name, index, array) {
   })
 })
 
-function getFilesSync (dir, files_){
-    files_ = files_ || [];
-    var files = fs.readdirSync(dir);
+function getFilesSync (dir, files_, filter){
+    files_ = files_ || []
+    var files = fs.readdirSync(dir)
+
     for (var i in files){
-        var name = dir + '/' + files[i];
+        var name = dir + '/' + files[i]
+
         if (fs.statSync(name).isDirectory()){
-            getFiles(name, files_);
+          getFilesSync(name, files_, filter)
         } else {
-            files_.push(name);
+          if (filter && filter.length > 0 && name.indexOf (filter) >= 0) {
+            files_.push(name)
+          } else if (!filter || filter && ! (filter.length > 0)) {
+            files_.push(name)
+          }
         }
     }
-    return files_;
+
+    return files_
 }
 
 function readStatus (statusFile, parser, isError, callback) {
@@ -53,7 +60,7 @@ function readStatus (statusFile, parser, isError, callback) {
 }
 
 function alert (parser, isError) {
-  require ('./alerts/' + CONFIG.ALERT_METHOD + ".js").alert(parser.name + " is " + (isError ? "down" : "up"), isError, function () {
+  require ('./alerts/' + CONFIG.ALERT_METHOD + "/" + CONFIG.ALERT_METHOD + ".js").alert(parser.name + " is " + (isError ? "down" : "up"), isError, function () {
     console.log ("done")
   })
 }

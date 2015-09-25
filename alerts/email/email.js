@@ -1,13 +1,14 @@
-var CONFIG       = require("./../config"),
+var CONFIG       = require("./../../config"),
+    EMAIL_CONFIG = require("./config"),
     nodemailer   = require("nodemailer")
 
 module.exports.alert = function (subject, isError, callback) {
   var sentMailCounter = 0,
       transporter     = nodemailer.createTransport({
-    service: CONFIG.EMAIL_PROVIDER,
+    service: EMAIL_CONFIG.EMAIL_PROVIDER,
     auth: {
-      user: CONFIG.EMAIL_USER,
-      pass: CONFIG.EMAIL_PASSWORD
+      user: EMAIL_CONFIG.EMAIL_USER,
+      pass: EMAIL_CONFIG.EMAIL_PASSWORD
     }
   })
 
