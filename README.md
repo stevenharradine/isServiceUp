@@ -12,7 +12,7 @@ cd service-watch
 node install # yes node NOT npm
 ```
 
-## set up your config file to send emails and / or slack in `alerts/`
+## set up your config file to send emails and / or slack in alerts/
 ```
 module.exports.EMAIL_USER     = 'youremail';
 module.exports.EMAIL_PASSWORD = 'yourpassword';
