@@ -1,4 +1,4 @@
-var fs           = require('fs')
+var fs = require('fs')
 
 module.exports.getFilesSync = function (dir, files_, filter){
     files_ = files_ || []
