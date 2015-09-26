@@ -12,7 +12,7 @@ module.exports.getFilesSync = function (dir, files_, filter){
         } else {
           if (filter && filter.length > 0 && name.indexOf (filter) >= 0) {
             files_.push(name)
-          } else if (!filter || filter && ! (filter.length > 0)) {
+          } else if (!filter || filter && !(filter.length > 0)) {
             files_.push(name)
           }
         }
