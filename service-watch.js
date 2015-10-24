@@ -17,9 +17,9 @@ getFilesSync('parsers-enabled').forEach (function (parser_name, index, array) {
           statusFile = "./" + parser.name + ".status"
 
       readStatus (statusFile, parser, isError, function (currentStatus) {
-        if (JSON.parse (currentStatus) != isError) {
+        if (currentStatus != isError) {
           writeStatus (statusFile, isError, function () {
-            alert (isError)
+            alert (parser, isError)
           })
         }
       })
@@ -40,7 +40,10 @@ function readStatus (statusFile, parser, isError, callback) {
 }
 
 function alert (parser, isError) {
-  require ('./alerts/' + CONFIG.ALERT_METHOD + "/" + CONFIG.ALERT_METHOD + ".js").alert(parser.name + " is " + (isError ? "down" : "up"), isError, function () {
+  var package_path  = "./alerts/" + CONFIG.ALERT_METHOD + "/" + CONFIG.ALERT_METHOD + ".js"
+      alert_message = parser.name + ": " + isError
+
+  require (package_path).alert(alert_message, isError, function () {
     console.log ("done")
   })
 }
