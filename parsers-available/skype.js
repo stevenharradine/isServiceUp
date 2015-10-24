@@ -6,9 +6,9 @@ module.exports.parse = function (dom) {
 
   dom("#content").find(".post").each (function (i, el) {
     if (dom(this).find (".post-status").find(".issue-ongoing").length) {
-      isError = true
+      return "Some issues"
     }
   })
 
-  return isError
+  return "Should be working"
 }

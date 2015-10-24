@@ -1,4 +1,4 @@
-module.exports.name = "xbox Live"
+module.exports.name = "Xbox Live"
 module.exports.url = "http://support.xbox.com/en-CA/xbox-live-status"
 
 module.exports.parse = function (dom) {
@@ -10,5 +10,5 @@ module.exports.parse = function (dom) {
     }
   })
 
-  return isError
+  return isError ? "Some issues" : "Should be working"
 }
