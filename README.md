@@ -20,7 +20,7 @@ module.exports.EMAIL_PASSWORD = 'yourpassword';
 module.exports.EMAIL_PASSWORD = 'TOKEN/TOKEN/TOKEN';
 ```
 
-## copy or symlink parsers to parsers-enabled
+## copy or symlink parsers from parsers-avilable to parsers-enabled
 ```
 cd parsers-enabled
 ln -s ../parsers-available/github.js ./
