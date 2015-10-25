@@ -27,7 +27,7 @@ ln -s ../parsers-available/github.js ./
 cd ..
 ```
 
-## run the program selecting which service to check
+## run the program selecting which alert to use and where to alert too
 ```
 node service-watch {{ alert_type }} [{{ alert_list }}]
 ```
