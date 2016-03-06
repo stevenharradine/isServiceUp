@@ -1,6 +1,8 @@
 # Service Watch
 A simple script to read if a service is up or down and notify you when the service is up
 
+[![Licence](https://img.shields.io/badge/Licence-ISC-blue.svg)](https://opensource.org/licenses/ISC) [![Code Climate](https://codeclimate.com/github/stevenharradine/service-watch/badges/gpa.svg)](https://codeclimate.com/github/stevenharradine/service-watch) [![Issue Count](https://codeclimate.com/github/stevenharradine/service-watch/badges/issue_count.svg)](https://codeclimate.com/github/stevenharradine/service-watch)
+
 ## clone the repo
 ```
 git clone https://github.com/stevenharradine/service-watch.git
